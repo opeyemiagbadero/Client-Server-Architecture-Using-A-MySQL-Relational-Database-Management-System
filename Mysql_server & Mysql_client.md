@@ -13,7 +13,7 @@ Confirmed the installation of mysql on server A by logging into mysql as the roo
 
 ![4  confirm the installation of my sql on server A](https://user-images.githubusercontent.com/79456052/176448190-137bcc83-7a17-42f9-9463-85b1e73aee48.png)
 
-Since MySQL server uses TCP port 3306 by default, I opened up the port by creating a new entry in ‘Inbound rules’ in ‘mysql server' security groups, such that access to 'mysql server' was only restricted to the local ip address of my 'mysql client'
+Since MySQL server uses TCP port 3306 by default, I opened up the port by creating a new entry in ‘Inbound rules’ in ‘mysql server' security group, such that access to 'mysql server' was only restricted to the local ip address of my 'mysql client'
  
 ![5  include the  private ip address of the client on the SG of server A for port 3306](https://user-images.githubusercontent.com/79456052/176448694-31c3efe8-fe9f-4218-a8db-53144a22aa86.png)
 
@@ -25,12 +25,12 @@ Created a 'remote_user' ( with a password) and a test database (test_db) on my m
 
 ![8  create a user on the mysql database](https://user-images.githubusercontent.com/79456052/176455961-8ee0d4a9-0485-493b-9219-e96e6570349e.png)
 
-Configured MySQL server to allow connections from remote hosts by replacing ‘127.0.0.1’ to ‘0.0.0.0’ of the bind address on mysqld.cnf file *sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf* and saved the file.
+Configured MySQL server to allow connections from a remote host by replacing ‘127.0.0.1’ to ‘0.0.0.0’ of the bind address on mysqld.cnf file using the command *sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf* and saved the file.
 
 ![9  configure MySQL server to allow connections from remote hosts and restart the service](https://user-images.githubusercontent.com/79456052/176456860-224faf23-b047-46d1-a5d4-15ca70810e8e.png)
 
 
-From 'mysql client' server,  I  connected remotely to mysql server database engine without using ssh, but the command *sudo mysql -u remote_user -h <mysql_client private ip address> -p* I succesfully logged into my_sql servers database server from my client and accessd the remote_user and the test database test_db 
+From 'mysql client' server,  I  connected remotely to mysql server database engine without using ssh, but the command *sudo mysql -u remote_user -h <mysql_client private ip address> -p*. I succesfully logged into my_sql servers database server from my client and accessd the remote_user and the test database test_db 
 
 
 ![10  From mysql client Linux Server connect remotely to mysql server Database Engine without using SSH  You must use the mysql utility to perform this action   Show databases afterwards](https://user-images.githubusercontent.com/79456052/176457402-36b34a57-9a21-41c5-bac8-48a961ae29b1.png)
